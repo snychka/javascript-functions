@@ -11,6 +11,15 @@ function contains(cell)
 
 const sum = ([x, y], [j, k]) => [x+j,y+k];
 
+/*
+const getNeighborsOf = ([x, y]) => [
+        [x-1, y+1], [x, y+1], [x+1, y+1],
+        [x-1, y  ]          , [x+1, y  ],
+        [x-1, y-1], [x, y-1], [x+1, y-1]
+    ];
+*/
+
+// should pass, but doesn't, currently need a "1-liner"
 const getNeighborsOf = ([x, y]) => {
 
     return [
@@ -84,6 +93,9 @@ const calculateNext = state => {
 
 };
 
+// FIX: 2 commented lines below
+//const iterate = (state, iterations) => {
+    //const states = [state];
 const iterate = (states, iterations) => {
     for(let i = 0; i < iterations; i++) {
         states.push(calculateNext(states[states.length-1]));
@@ -142,6 +154,7 @@ const printCells = state => {
 const main = (pattern, iterations) => {
     //oldconsole(startPatterns[pattern]);
     //oldconsole(startPatterns['rpentomino']);
+    // FIX: iterate(startPatterns[pattern], iterations)
     iterate([startPatterns[pattern]], iterations)
         .forEach(x  => console.log(printCells(x)));
 
